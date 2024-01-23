@@ -23,5 +23,5 @@ jobs:
       - name: Install dependencies
         run: yarn
 
-      - name: Dev
-        run: yarn dev
+      - name: Build
+        run: yarn build
