@@ -3,12 +3,17 @@ version: 2.1
 workflows:
   cypress:
     jobs:
-      - test
+      - run_dev
 jobs:
-  test:
-    docker:
-      - image: cimg/node:14.13.0
+  run_dev: # this can be any name you choose
+    executor: node/default # use the default executor defined within the orb
     steps:
       - checkout
-      - run: node --version
-      
+      - node/install-packages:
+          pkg-manager: yarn
+      - run:
+          command: yarn dev
+          name: Run dev
+      - persist_to_workspace:
+          root: ~/project
+          paths: .
